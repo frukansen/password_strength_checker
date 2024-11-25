@@ -17,7 +17,6 @@ Version 2 introduces a functionality to compare user-provided passwords against 
 
 #### About `rockyou.txt`:
 The [`rockyou.txt`](https://github.com/frukansen/password_strength_checker/releases/tag/data) file is a popular password dataset derived from the [2009 RockYou data breach](https://techcrunch.com/2009/12/14/rockyou-hack-security-myspace-facebook-passwords/), where millions of plaintext passwords were leaked. This tool uses the dataset for educational purposes, such as demonstrating weak password detection.  
-⚠️ **Ensure you have legal permission to use this dataset in your region.**
 
 #### Setup Instructions:
 1. Download and place the `rockyou.txt` file in the project directory (same folder as the script).
