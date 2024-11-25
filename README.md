@@ -1,14 +1,12 @@
-# Password Strength Checker
-This is a Python script that evaluates the strength of a password based on essential security criteria. It provides feedback on improving weak passwords.
+# Password Checker
 
-### Features
-**Password Length:** Minimum 8 characters  
-**Uppercase Letters:** At least one uppercase letter  
-**Lowercase Letters:** At least one lowercase letter  
-**Digits:** At least one number  
-**Special Characters:** At least one special character (e.g., !@#$%^&*())
+A simple Python project to check the strength of passwords and compare them with a database of commonly used weak passwords.
 
-### Strength Levels
-**Weak:** Meets fewer than 4 criteria  
-**Moderate:** Meets 4 out of 5 criteria  
-**Strong:** Meets all criteria
+## Features
+- Validates password strength based on:
+  - Length (minimum 8 characters)
+  - Presence of uppercase and lowercase letters
+  - Inclusion of at least one digit
+  - Inclusion of at least one special character
+- Compares passwords with a weak password list (`rockyou.txt`).
+
