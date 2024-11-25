@@ -1,31 +1,52 @@
 import re
 
-def password_strength(password):
-    strength = 0
-    strength_criteria = [
-        (r".{8,}", "Password must be at least 8 characters long."),
-        (r"[A-Z]", "Password should include uppercase letters."),
-        (r"[a-z]", "Password should include lowercase letters."),
-        (r"[0-9]", "Password should include digits."),
-        (r"[!@#$%^&*()_+]", "Password should include special characters.")
-    ]
-    
-    # Check each criterion
-    for regex, message in strength_criteria:
-        if re.search(regex, password):
-            strength += 1
-        else:
-            print(message)
-    
-    # Calculate strength level
-    if strength == len(strength_criteria):
-        return "Strong"
-    elif strength == len(strength_criteria) - 1:
-        return "Moderate"
-    else:
-        return "Weak"
+# Global variable to store weak passwords
+weak_passwords = set()
 
-# Main program
-password = input("Enter your password: ")
-strength = password_strength(password)
-print(f"Password Strength: {strength}")
+def load_weak_passwords(file_path):
+    """
+    Loads the weak password list from a file.
+    """
+    global weak_passwords
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
+            weak_passwords = set(line.strip() for line in file)
+    except FileNotFoundError:
+        print(f"Warning: {file_path} not found. Weak password check is disabled.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+def check_password_strength(password):
+    """
+    Checks the strength of a password.
+    """
+    if len(password) < 8:
+        return "Weak: Password must be at least 8 characters long."
+
+    if not re.search(r"[A-Z]", password):
+        return "Weak: Password must contain at least one uppercase letter."
+
+    if not re.search(r"[a-z]", password):
+        return "Weak: Password must contain at least one lowercase letter."
+
+    if not re.search(r"[0-9]", password):
+        return "Weak: Password must contain at least one digit."
+
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        return "Weak: Password must contain at least one special character."
+
+    if password in weak_passwords:
+        return "Weak: Password is too common and insecure!"
+
+    return "Strong: Password looks good."
+
+if __name__ == "__main__":
+    # Load the weak password list
+    load_weak_passwords("rockyou.txt")
+
+    while True:
+        user_password = input("Enter your password (type 'q' to quit): ")
+        if user_password.lower() == 'q':
+            break
+        result = check_password_strength(user_password)
+        print(result)
