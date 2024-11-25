@@ -2,7 +2,7 @@
 
 A simple Python project to check the strength of passwords and compare them with a database of commonly used weak passwords.
 
-Version 2 introduces a functionality to compare user-provided passwords against a list of known weak passwords(rockyou.txt by default).
+Version 2 introduces a functionality to compare user-provided passwords against a list of known weak passwords (rockyou.txt by default).
 ## Features
 - Validates password strength based on:
   - Length (minimum 8 characters)
